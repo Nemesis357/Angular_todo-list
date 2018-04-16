@@ -1,0 +1,24 @@
+<div class="jumbotron p-3" style="background-color: #007bff">
+    <h4 class="text-center">To Do List App</h4>
+</div>
+<div class="input-group">
+    <input type="text" class="form-control" #item>
+    <button class="btn btn-primary" (click)="onSubmit(item)">
+        <i class="fa fa-plus-circle fa-2x"></i>
+    </button>
+</div>
+<p class="warning" *ngIf="isEmpty">{{ errorMessage }}</p>
+
+<div class="my-2">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of toDoList">
+        <span class="pointer" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key,item.isChecked)">
+            <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-check-circle-o':'fa-circle-thin'"></i>
+        </span>
+        {{item.title}}
+        <span class="pointer text-danger pull-right" (click)="onDelete(item.$key)">
+            <i class="fa fa-trash-o fa-lg"></i>
+        </span>
+        </li>
+    </ul>
+</div>
